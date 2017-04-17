@@ -1,0 +1,189 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>YoniFlenner.Net - Ex08</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/reset.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css" media="screen" />
+
+
+    <script src="jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <!-- added or removed asynchronously -->
+    <script>
+        function onClick() {
+            disableButton();
+            clearMessage();
+            showDelay();
+            pauseThenToggleControls();
+        };
+
+        function disableButton() {
+            $('#btn').attr("disabled", true);
+        };
+
+        function clearMessage() {
+            if ($('#message').length) {
+                $('#message').first().remove();
+            }
+        };
+
+        function showDelay() {
+            $('#btn').after("<div id='loading'>Wait for it... <img src='ajax-loader.gif'></div></br>");
+        };
+
+        function pauseThenToggleControls() {
+            setTimeout(function () {
+                toggleControls();
+            }, 3000);
+        };
+
+        function toggleControls() {
+            var btn = $('#btn').first();
+            var check = $('#checkbox').first();
+            var load = $('#loading');
+            if (btn.text() == "Remove") {
+                check.remove();
+                btn.text("Add");
+                btn.after("<p id='message'>It's gone!</p>");
+                btn.attr("disabled", false);
+                load.hide();
+            } else {
+                btn.text("Remove");
+                btn.after("<div id='checkbox'><input type='checkbox' id='checkbox'> A checkbox </div>");
+                btn.after("<p id='message'>It's back!</p>");
+                btn.attr("disabled", false);
+                load.hide();
+            }
+        };
+    </script>
+
+    <!-- Element on page that is hidden -->
+    <script>
+    $(function () {
+        $('#start1 button').click(function () {
+            $('#start1').hide();
+            $('#start1').before("<div id='loading1'>Loading... <img src='ajax-loader.gif'></div>");
+            setTimeout(function () {
+                $('#loading1').hide();
+                $('#finish1').show();
+            }, 2000);
+        });
+    });
+    </script>
+
+    <!-- Element on page that is rendered -->
+    <script>
+    $(function () {
+        $('#start2 button').click(function () {
+            $('#start2').hide();
+            $('#start2').before("<div id='loading2'>Loading... <img src='ajax-loader.gif'></div>");
+            setTimeout(function () {
+                $('#loading2').hide();
+                $('#loading2').before("<div id='finish2' style='display:none'><h4>My Rendered Element After Fact!</h4></div>")
+                $('#finish2').show();
+            }, 2000);
+        });
+    });
+    </script>
+
+    <div id="header">
+
+        <div class="container">
+
+            <h1><a href="index.html">YoniFlenner.Net</a></h1>
+
+        </div> <!-- END .container -->
+
+    </div> <!-- END #header -->
+
+    <div id="main_content">
+
+        <div id="contact_area">
+
+            <div class="container">
+
+                <h2 id="title">Synchronization</h2>
+
+                <div id="contact_info">
+
+                    <div id="contact_info_left">
+                        This example demonstrates when controls (e.g., checkbox, option button, etc.) are added or removed asynchronously.<br /><br />
+                        <form>
+                            <button autocomplete="off" type="button" id="btn" onclick="onClick()">Remove</button>
+                            <div id="checkbox">
+                                <input type="checkbox" id="checkbox" /> A checkbox
+                            </div>
+
+                        </form>
+                        <br /><br /><br /><br />
+
+                        Element on page that is hidden <br /><br />
+                        <div id='start1'>
+                            <button id="hidden">Start Hidden</button>
+                        </div>
+
+                        <div id='finish1' style='display:none'>
+                            <h4>My Hidden Element!</h4>
+                        </div>
+
+                        <br /><br /><br /><br />
+                        Element rendered after the fact<br /><br />
+                        <div id='start2'>
+                            <button id="rendered">Start Rendered</button>
+                        </div>
+
+                    </div> <!-- END #contact_info_left -->
+
+                </div> <!-- END #contact_info -->
+
+            </div> <!-- END .container -->
+
+        </div> <!-- END #contact_area -->
+
+    </div> <!-- END #main_content -->
+
+    <div id="footer">
+
+        <div class="container">
+
+            <div id="footer_contact" class="footer_info">
+
+                <h4>contact me</h4>
+                <p>
+                    <span class="bold_text">YoniFlenner.Net</span>
+                    <br /><br />
+                    WebSite: http://yoniflenner.net
+                    <br />
+                    Email: admin@yoniflenner.net
+                </p>
+
+            </div> <!-- END #footer_about -->
+
+            <div id="footer_connect" class="footer_info">
+
+                <h4>connect with me</h4>
+
+                <ul>
+                    <li><a href="http://www.facebook.com/yoniflenner.net" id="facebook" title="Facebook" target="_blank">Facebook</a></li>
+                    <li><a href="http://www.linkedin.com/in/yoniflenner" id="linkedin" title="LinkedIn" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" id="skype" title="Skype">Skype</a></li>
+                </ul>
+
+
+            </div> <!-- END #footer_about -->
+
+            <p id="copyright">
+                &copy; Copyright 2015 - YoniFlenner.Net. All rights reserved.
+            </p>
+
+
+        </div> <!-- END .container -->
+
+    </div> <!-- END #footer -->
+
+</body>
+</html>
